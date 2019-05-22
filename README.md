@@ -3,6 +3,10 @@
 
 Welcome to your Mod 6 Assessment. You will be tested for your understanding on concepts and ability to programmatically solve problems that have been covered in class and in the curriculum. Topics in this assessment include graph theory, natural language processing, and neural networks. 
 
+The goal here is to demonstrate your knowledge.  Showing that you know things is more important than getting the best model.
+
+Use any libraries you want to solve the problems in the assessment. 
+
 You will have up to 90 minutes to complete this assessment. 
 
 ## Natural Language Processing Assessment
@@ -65,7 +69,7 @@ def tokenize(string):
 
 
 ```python
-def remove_stopwords(tokens): 
+def remove_stopwords(tokens, stopwords_list): 
     '''
     Removes stopwords from a list of tokens (words)
     
@@ -73,6 +77,9 @@ def remove_stopwords(tokens):
     ----------
     tokens: list object
         List of tokens that need stopwords removed
+    stopwords_list: list boject
+        List of stopwords to remove
+    
     Returns
     --------
     stopwords_removed : list object
@@ -252,7 +259,7 @@ def get_max_tf_idf(tf_idf, doc):
 
 ### Explain
 
-##### 6) The word school(s) has the highest TF-IDF value in the second document of our test data. What does that tell us about the word school? 
+##### 6) The word school(s) (this might be different) has the highest TF-IDF value in the second document of our test data. What does that tell us about the word school? 
 
 
 
@@ -260,7 +267,8 @@ def get_max_tf_idf(tf_idf, doc):
 get_max_tf_idf(tf_idf_test, 1)
 ```
 
-// write stuff //
+// answer here //
+
 
 ## Network Analysis Assessment
 
@@ -354,7 +362,7 @@ $$ \sigma(z) = \frac{1}{1+e^{-z}}$$
 
 // answer here //
 
-##### 2) Given inputs and weights 1 through l and the sigmoid function (given above), write a function which computes the output y. Assume bias = 1.
+##### 2) Given inputs and weights 1 through l and the sigmoid function (given above), write a function which computes the output y. Assume bias = 0.
 
 
 ```python
@@ -377,7 +385,7 @@ def sigmoid(input_function):
 
 
 ```python
-def perceptron_output(x,w,b=1):
+def perceptron_output(x,w,b=0):
     """
     Caluclates the perceptron output. Should use sigmoid as a helper function.
     
@@ -490,7 +498,7 @@ Hint: use the activity_regularizer parameter in both of the hidden layers.
 
 
 ```python
-random.seed(0)
+np.random.seed(0)
 
 #Instantiate Classifier
 classifier = Sequential()
@@ -611,15 +619,15 @@ classifier.add(Dense(1, activation='sigmoid', kernel_initializer='zero'))
 
 ```python
 #Compiling the neural network, and specifying to measure accuracy at each step
-classifier.compile(optimizer ='adam',loss='binary_crossentropy', metrics =['accuracy'])
+classifier.compile(optimizer ='sgd',loss='binary_crossentropy', metrics =['accuracy'])
 ```
 
 
 ```python
 #Fitting the neural network
-classifier.fit(X,y, batch_size=10, epochs=100,verbose=1)
+classifier.fit(X,y, batch_size=5, epochs=10,verbose=1)
 ```
 
-##### 14) Explain why modifying the gradient descent process does anything and how it works.
+##### 14) Explain why modifying the gradient descent process does anything and how it works. Include parameters you tried even if they did not improve the model.
 
 // answer here //
