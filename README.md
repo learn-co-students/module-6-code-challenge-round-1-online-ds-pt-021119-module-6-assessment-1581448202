@@ -175,6 +175,8 @@ print(accuracy_score(y_test, rf_test_preds))
 
 You can see both classifiers do a pretty good job classifying texts as either "SPAM" or "HAM". Let's figure out which words are the most important to each class of texts! Recall that Inverse Document Frequency can help us determine which words are most important in an entire corpus or group of documents. 
 
+<b>3) Create a function that calculates the IDF of each word in our collection of texts.</b>
+
 
 ```python
 def get_idf(class_, df, stopwords_list):
@@ -198,12 +200,15 @@ def get_idf(class_, df, stopwords_list):
     '''
     #generate series containing all texts associated with the defined class
     docs = 'code here'
+    
     #initialize dictionary to count document frequency 
     # (number of documents that contain a certain word)
     class_dict = {}
+    
     #loop over each text and split each text into a list of its unique words 
     for doc in docs:
         words = set(doc.split())
+        
         #loop over each word and if it is not in the stopwords_list add the word 
         #to class_dict with a value of 1. if it is already in the dictionary
         #increment it by 1
@@ -225,12 +230,9 @@ get_idf('ham', df_messages, stopwords_list)
 ```
 
 ### Explain
-The word schools has the highest TF-IDF value in the second document of our test data. What does that tell us about the word school? 
+<b> 4) The word schools has the highest TF-IDF value in the second document of our test data. What does that tell us about the word school? </b>
 
-
-```python
-get_max_tf_idf(tf_idf_test, 1)
-```
+// answer here //
 
 ## Network Analysis Assessment
 
