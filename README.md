@@ -9,6 +9,13 @@ Use any libraries you want to solve the problems in the assessment.
 
 You will have up to 90 minutes to complete this assessment. 
 
+The sections of the assessment are:
+
+* Natural Language Processing
+* Network Analysis
+* Perceptrons and Multi-Layer Perceptrons
+* Regularization and Optimization of Neural Networks
+
 ## Natural Language Processing
 
 In this exercise we will attempt to classify text messages as "SPAM" or "HAM" using TF-IDF Vectorization. Once we successfully classify our texts we will examine our results to see which words are most important to each class of text messages. 
@@ -301,7 +308,7 @@ Finally, you will be tuning and optimizing two neural networks trained on data g
 
 
 
-#### Perceptron and Multi Layer Perceptron
+#### Perceptron and Multi Layer Perceptrons
 
 You will need the following libraries
 
@@ -390,30 +397,15 @@ perceptron_output(x,w)
 
 <img src='images/Deeper_network_day2.png'/>
 
-##### Forward propagation
-
-$ Z^{[l]}= W^{[l]} A^{[l-1]} + b^{[l]}$
-
-$ A^{[l]}= g^{[l]} ( Z^{[l]})$
-
-##### Back-propagation
-$ dZ^{[l]}= dA ^{[l]} * g^{[l]'} (Z^{[l]})$
-
-$ dW^{[l]} = \dfrac{1}{m} dZ^{[l]}* A^{[l-1]T}$
-
-$ db^{[l]} = \dfrac{1}{m} np.sum(dZ^{[l]}, axis=1, keepdims=True)$
-
-$ dA^{[l-1]} = W^{[l]T}*dZ^{[l]}$
-
-##### 1) Describe the process of forward propagation in neural networks
+##### 3) Describe the process of forward propagation in neural networks
 
 // answer here //
 
-##### 2) How does what happens in forward-propagation change what happens in back-propagation? Be as specific as possible.
+##### 4) How does what happens in forward-propagation change what happens in back-propagation? Be as specific as possible.
 
 // answer here //
 
-##### 3) Imagine you are trying classifying several audio files into five different classes of sounds. What do you have to change in your last layer, to accomplish this? 
+##### 5) Imagine you are trying classifying audio files into five different classes of sounds. What should your activation function be in the output layer and why? 
 
 // answer here //
 
@@ -448,8 +440,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
 
 
 Your code goes in the cell below. Try running once without regularization first and look at what happens to train and test accuracy.
-
-Hint: use the activity_regularizer parameter in both of the hidden layers.
 
 
 ```python
@@ -511,10 +501,10 @@ predicted_vals_test = classifier.predict_classes(X_test)
 print(accuracy_score(y_test,predicted_vals_test))
 ```
 
-##### 2) Explain how regularization is related to the bias/variance tradeoff within Neural Networks? What does regularization change in the training process?
+##### 2) Explain how regularization is related to the bias/variance tradeoff within Neural Networks and how it's related to the results you just achieved in the previous model. What does regularization change in the training process?
 
 // answer here // 
 
-##### 3) How does L1 regularization change a neural network's architecture?
+##### 3) How might L1  and dropout regularization change a neural network's architecture?
 
 // answer here //
