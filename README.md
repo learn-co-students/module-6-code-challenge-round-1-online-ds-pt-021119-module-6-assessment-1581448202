@@ -301,6 +301,8 @@ Finally, you will be tuning and optimizing two neural networks trained on data g
 
 
 
+#### Perceptron and Multi Layer Perceptron
+
 You will need the following libraries
 
 
@@ -320,23 +322,25 @@ from keras.initializers import RandomNormal
 <center><b>The Sigmoid Function</b></center>
 $$ \sigma(z) = \frac{1}{1+e^{-z}}$$
 
+<center><b>A Diagram of Simple Perceptron</b></center>
+
 <img src='images/perceptron.png'/>
 
 ##### 1) What are the inputs and outputs of a perceptron?
 
 // answer here //
 
-##### 2) Given inputs and weights 1 through l and the sigmoid function (given above), write a function which computes the output y. Assume bias = 0.
+##### 2) We've completed the sigmoid function for you. Let's create a function that takes in an array of inputs (x) along with predefined weights (w) and returns the output of a perceptron. 
 
 
 ```python
-def sigmoid(input_function):
+def sigmoid(input_):
     """
     Transforms an input using the sigmoid function given above
     
     Parameters
     ----------
-    input_function: function or numeric input to be transformed
+    input_: input to be transformed
     
     Returns
     --------
@@ -344,12 +348,12 @@ def sigmoid(input_function):
         result of the application of the sigmoid function 
     """
     
-    pass
+    return 1/(1+np.exp(-1*input_))
 ```
 
 
 ```python
-def perceptron_output(x,w,b=0):
+def perceptron_output(x,w):
     """
     Caluclates the perceptron output. Should use sigmoid as a helper function.
     
@@ -371,27 +375,18 @@ def perceptron_output(x,w,b=0):
     pass
 ```
 
-##### 3) What is the role of the sigmoid function here? How does what it does here relate to logistic regression?
-
-// answer here //
-
-##### 4) Name two other activation functions and write functions for them as done with the sigmoid in part 1
-
 
 ```python
-def activation_1(input_function):
-    pass
+x = [1, 50, 100]
+w = [.1, .9, .75]
 ```
 
 
 ```python
-def activation_2(input_function):
-    pass
+perceptron_output(x,w)
 ```
 
-// answer here //
-
-### Multilayer Perceptron
+<center><b>Diagram of a Multi Layer Perceptron</b></center>
 
 <img src='images/Deeper_network_day2.png'/>
 
@@ -410,19 +405,15 @@ $ db^{[l]} = \dfrac{1}{m} np.sum(dZ^{[l]}, axis=1, keepdims=True)$
 
 $ dA^{[l-1]} = W^{[l]T}*dZ^{[l]}$
 
-##### 5) Describe the process of forward propagation in neural networks
+##### 1) Describe the process of forward propagation in neural networks
 
 // answer here //
 
-##### 6) How does what happens in forward-propagation change what happens in back-propagation? Be as specific as possible.
+##### 2) How does what happens in forward-propagation change what happens in back-propagation? Be as specific as possible.
 
 // answer here //
 
-##### 7) Why is the chain rule important for backpropagation?
-
-// answer here //
-
-##### 8) You are training a neural network to pick out particular sounds in a dataset of audio files. Assume all preprocessing has already been done. If there are several sounds in each mp3 file, how would you modify your output layer to identify whether a particular sound occurs? How does your interpretation change assuming more than one sound can be in each file?
+##### 3) Imagine you are trying classifying several audio files into five different classes of sounds. What do you have to change in your last layer, to accomplish this? 
 
 // answer here //
 
@@ -453,7 +444,7 @@ Regularization: The following model is over-fit. Modify the following code to ad
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
 ```
 
-##### 9) Modify the code below to use L2 regularization
+##### 1) Modify the code below to use L2 regularization
 
 
 Your code goes in the cell below. Try running once without regularization first and look at what happens to train and test accuracy.
@@ -520,78 +511,10 @@ predicted_vals_test = classifier.predict_classes(X_test)
 print(accuracy_score(y_test,predicted_vals_test))
 ```
 
-##### 10) Explain what you did and how it changed the train and test accuracy
+##### 2) Explain how regularization is related to the bias/variance tradeoff within Neural Networks? What does regularization change in the training process?
 
 // answer here // 
 
-##### 11) Explain what regularization does, and how it affects the final weights of a model.
-
-// answer here //
-
-##### 12) How does L1 regularization change a neural network's architecture?
-
-// answer here //
-
-### Optimization with Gradient Descent
-
-A 3 dimensional dataset is generated using SKlearn and a poorly fit neural network is fit to it. Try improving the model using what's available through Keras, and then explain what you did in part 5.
-
-<img src='images/data.png' width="50%"/>
-
-Generate 3d data with complex error surface for MLP
-
-
-```python
-np.random.seed(0)
-# Construct dataset
-# Gaussian 1
-X1, y1 = make_gaussian_quantiles(cov=3.,
-                                 n_samples=10000, n_features=3,
-                                 n_classes=2, random_state=1)
-X1 = pd.DataFrame(X1,columns=['x','y','z'])
-y1 = pd.Series(y1)
-
-# Gaussian 2
-X2, y2 = make_gaussian_quantiles(mean=(4, 4,2), cov=1,
-                                 n_samples=5000, n_features=3,
-                                 n_classes=2, random_state=2)
-X2 = pd.DataFrame(X2,columns=['x','y','z'])
-y2 = pd.Series(y2)
-# Combine the gaussians
-X1.shape
-X2.shape
-X = pd.DataFrame(np.concatenate((X1, X2)))
-y = pd.Series(np.concatenate((y1, - y2 + 1)))
-```
-
-##### 13) Modify the code below to improve the starter model
-
-Hint: use help(Dense) to see what parameters you can change. You should be able to explain how these parameters relate to gradient descent. Don't worry too much about overfitting in this example, just focus on gradient descent.
-
-
-```python
-#keras.initializers.RandomNormal(mean=0.0, stddev=0.05, seed=None)
-classifier = Sequential()
-#First Hidden Layer
-classifier.add(Dense(4, activation='relu', kernel_initializer='zero', input_dim=3))
-#Second  Hidden Layer
-classifier.add(Dense(4, activation='relu', kernel_initializer='zero'))
-#Output Layer
-classifier.add(Dense(1, activation='sigmoid', kernel_initializer='zero'))
-```
-
-
-```python
-#Compiling the neural network, and specifying to measure accuracy at each step
-classifier.compile(optimizer ='sgd',loss='binary_crossentropy', metrics =['accuracy'])
-```
-
-
-```python
-#Fitting the neural network
-classifier.fit(X,y, batch_size=5, epochs=10,verbose=1)
-```
-
-##### 14) Explain why modifying the gradient descent process does anything and how it works. Include parameters you tried even if they did not improve the model.
+##### 3) How does L1 regularization change a neural network's architecture?
 
 // answer here //
