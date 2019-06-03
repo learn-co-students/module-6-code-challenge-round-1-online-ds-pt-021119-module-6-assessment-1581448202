@@ -1,9 +1,9 @@
 
 <h1 style="text-align:center">Module 6 Assessment</h1>
 
-Welcome to your Mod 6 Assessment. You will be tested for your understanding on concepts and ability to programmatically solve problems that have been covered in class and in the curriculum. Topics in this assessment include graph theory, natural language processing, and neural networks. 
+Welcome to your Mod 6 Assessment. You will be tested for your understanding of concepts and ability to programmatically solve problems that have been covered in class and in the curriculum. Topics in this assessment include graph theory, natural language processing, and neural networks. 
 
-The goal here is to demonstrate your knowledge.  Showing that you know things is more important than getting the best model.
+The goal here is to demonstrate your knowledge. Showing that you know things about certain concepts is more important than getting the best model.
 
 Use any libraries you want to solve the problems in the assessment. 
 
@@ -237,11 +237,11 @@ get_idf('ham', df_messages, stopwords_list)
 ```
 
 ### Explain
-<b> 4) The word schools has the highest TF-IDF value in the second document of our test data. What does that tell us about the word school? </b>
+<b> 4) Imagine that the word "school" has the highest TF-IDF value in the second document of our test data. What does that tell us about the word school? </b>
 
 // answer here //
 
-## Network Analysis Assessment
+## Network Analysis
 
 For these next questions, you'll be using a graph dataset of facebook users and networkx. In the next cell, we're going to read in the dataset.
 
@@ -278,7 +278,9 @@ def find_centrality(graph):
 
 // answer here //
 
-##### 3) A marketing group is looking to target different communities with advertisements based off of their assumed mutual interests. Use the k_cliques_communities method to calculate the number of cliques formed with k users in a function `find_k_communities`. Calculate how many communities there are if the minimum size of a clique is 5.
+#### 3) A marketing group is looking to target different communities with advertisements based off of their assumed mutual interests. 
+
+#### Use the `k_cliques_communities` method to calculate the number of cliques formed with k users in a function `find_k_communities`. Calculate how many communities there are if the minimum size of a clique is 5.
 
 
 
@@ -300,17 +302,9 @@ def find_k_communities(graph,k):
     pass
 ```
 
-## Neural Network Assessment 
+## Perceptrons and Multi Layer Perceptrons
 
-The deep learning portion of this assessment is split into three main sections.  First, concepts from the introduction to deep learning are assessed by reconstructing the basic building blocks of a neural network.  Then, forward and back-propagation will be discussed in the “Multilayer Perceptron” section, as we build out a fully functioning neural network.
-
-Finally, you will be tuning and optimizing two neural networks trained on data generated with SKLearn — the first with regularization, and the second by modifying different aspects of the gradient descent process for deep learning.  You will receive credit for explaining your steps well even if the model does not improve much.
-
-
-
-#### Perceptron and Multi Layer Perceptrons
-
-You will need the following libraries
+In the first neural network portion of this assessment, you are going to start off by answering questions related to the mechanics of basic neural networks. After, you will look at various ways of tuning neural networks by way of regularization and optimization. To start off with, we are going to import all the libraries that you might need for the questions in this section.
 
 
 ```python
@@ -360,7 +354,7 @@ def sigmoid(input_):
 
 
 ```python
-def perceptron_output(x,w):
+def perceptron_output(x,w,b):
     """
     Caluclates the perceptron output. Should use sigmoid as a helper function.
     
@@ -386,6 +380,7 @@ def perceptron_output(x,w):
 ```python
 x = [1, 50, 100]
 w = [.1, .9, .75]
+b = 0.5
 ```
 
 
@@ -409,9 +404,9 @@ perceptron_output(x,w)
 
 // answer here //
 
-### Regularization and Optimization of Neural Networks
+## Regularization and Optimization of Neural Networks
 
-These datasets are created using SKLearn, and should be improved. Although changing the number of nodes and layers may improve the models, focus on regularization in the first dataset, and gradient descent in the second.
+Now you're going to train full neural networks on a _small_ set of data. It is a binary classification problem in which you need to identify whether or not a dot will belong to the teal or orange class.
 
 
 ```python
@@ -428,18 +423,13 @@ for key, group in grouped:
 pyplot.show()
 ```
 
-Regularization: The following model is over-fit. Modify the following code to address the discrepancy between train and test accuracy.m
+The the two cells below, the set of data has been split into a training and testing set and then fit to a neural network with two hidden layers. Run the two cells below to see how well the model performs.
 
 
 ```python
 #train/test/split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
 ```
-
-##### 1) Modify the code below to use L2 regularization
-
-
-Your code goes in the cell below. Try running once without regularization first and look at what happens to train and test accuracy.
 
 
 ```python
@@ -476,22 +466,14 @@ classifier.add(Dense(
 classifier.compile(optimizer ='adam',loss="binary_crossentropy",metrics =['accuracy'])
 
 classifier.fit(X_train, y_train, epochs=25, verbose=0, batch_size=10, shuffle=False)
-```
 
-Look what happens to train and test accuracy as you modify the model
-
-
-```python
 # TRAIN
 
 #predict classes
 predicted_vals_train = classifier.predict_classes(X_train)
 #show accuracy score
 print(accuracy_score(y_train,predicted_vals_train))
-```
 
-
-```python
 
 # TEST
 
@@ -501,7 +483,65 @@ predicted_vals_test = classifier.predict_classes(X_test)
 print(accuracy_score(y_test,predicted_vals_test))
 ```
 
-##### 2) Explain how regularization is related to the bias/variance tradeoff within Neural Networks and how it's related to the results you just achieved in the previous model. What does regularization change in the training process?
+##### 1) Modify the code below to use L2 regularization
+
+
+The model appears to be overfitting. To deal with this overfitting, modify the code below to include L2 regularization in the model.
+
+
+```python
+np.random.seed(0)
+
+#Instantiate Classifier
+classifier2 = Sequential()
+
+#Hidden Layer
+classifier2.add(Dense(
+    32, 
+    activation='relu', 
+    input_dim=2,
+    kernel_initializer='random_normal'
+
+))
+
+#Hidden Layer
+classifier2.add(Dense(
+    32,
+    activation='relu', 
+    input_dim=2,
+    kernel_initializer='random_normal'
+
+))
+
+#Output Layer
+classifier2.add(Dense(
+    1, 
+    activation='sigmoid',
+    kernel_initializer='random_uniform',
+))
+
+classifier2.compile(optimizer ='adam',loss="binary_crossentropy",metrics =['accuracy'])
+
+classifier2.fit(X_train, y_train, epochs=25, verbose=0, batch_size=10, shuffle=False)
+
+# TRAIN
+
+#predict classes
+predicted_vals_train = classifier2.predict_classes(X_train)
+#show accuracy score
+print(accuracy_score(y_train,predicted_vals_train))
+
+# TEST
+
+#predict classess
+predicted_vals_test = classifier2.predict_classes(X_test)
+#show accuracy score
+print(accuracy_score(y_test,predicted_vals_test))
+
+```
+
+##### 2) Explain how regularization is related to the bias/variance tradeoff within Neural Networks and how it's related to the results you just achieved in the training and test accuracies of the previous model. What does regularization change in the training process (be specific to what is being regularized and how it is regularizing)?
+
 
 // answer here // 
 
