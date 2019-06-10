@@ -331,7 +331,7 @@ $$ \sigma(z) = \frac{1}{1+e^{-z}}$$
 
 // answer here //
 
-##### 2) We've completed the sigmoid function for you. Let's create a function that takes in an array of inputs (x) along with predefined weights (w) and returns the output of a perceptron. 
+##### 2) We've completed the sigmoid function for you. Let's create a function that takes in an array of inputs (x) along with predefined weights (w), a bias (b) and returns the output of a perceptron. 
 
 
 ```python
@@ -385,7 +385,7 @@ b = 0.5
 
 
 ```python
-perceptron_output(x,w)
+perceptron_output(x,w,b)
 ```
 
 <center><b>Diagram of a Multi Layer Perceptron</b></center>
@@ -423,7 +423,7 @@ for key, group in grouped:
 pyplot.show()
 ```
 
-The the two cells below, the set of data has been split into a training and testing set and then fit to a neural network with two hidden layers. Run the two cells below to see how well the model performs.
+In the two cells below, the set of data has been split into a training and testing set and then fit to a neural network with two hidden layers. Run the two cells below to see how well the model performs.
 
 
 ```python
@@ -486,7 +486,7 @@ print(accuracy_score(y_test,predicted_vals_test))
 ##### 1) Modify the code below to use L2 regularization
 
 
-The model appears to be overfitting. To deal with this overfitting, modify the code below to include L2 regularization in the model.
+The model appears to be overfitting. To deal with this overfitting, modify the code below to include L2 regularization in the model. 
 
 
 ```python
@@ -540,7 +540,11 @@ print(accuracy_score(y_test,predicted_vals_test))
 
 ```
 
-##### 2) Explain how regularization is related to the bias/variance tradeoff within Neural Networks and how it's related to the results you just achieved in the training and test accuracies of the previous model. What does regularization change in the training process (be specific to what is being regularized and how it is regularizing)?
+Did the regularization you performed prevent overfitting?
+
+// answer here //
+
+##### 2) Explain how regularization is related to the bias/variance tradeoff within Neural Networks and how it's related to the results you just achieved in the training and test accuracies of the previous models. What does regularization change in the training process (be specific to what is being regularized and how it is regularizing)?
 
 
 // answer here // 
