@@ -32,6 +32,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score, confusion_matrix
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.model_selection import train_test_split
 import string
 from nltk.corpus import stopwords
 from nltk import word_tokenize
@@ -69,7 +70,7 @@ y = df_messages['target']
 
 ```python
 #generate a list of stopwords 
-stopwords_list = stopwords_list = stopwords.words('english') + list(string.punctuation)
+stopwords_list = stopwords.words('english') + list(string.punctuation)
 
 ```
 
@@ -378,8 +379,8 @@ def perceptron_output(x,w,b):
 
 
 ```python
-x = [1, 50, 100]
-w = [.1, .9, .75]
+x = [1, .19, 1]
+w = [.2, .9, .75]
 b = 0.5
 ```
 
