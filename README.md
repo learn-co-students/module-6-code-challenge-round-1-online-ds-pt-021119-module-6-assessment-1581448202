@@ -240,7 +240,10 @@ get_idf('ham', df_messages, stopwords_list)
 ### Explain
 <b> 4) Imagine that the word "school" has the highest TF-IDF value in the second document of our test data. What does that tell us about the word school? </b>
 
-// answer here //
+
+```python
+# Your answer here
+```
 
 ## Network Analysis
 
@@ -278,6 +281,11 @@ def find_centrality(graph):
 #### 2) How does each of these people wield influence on the network? Imagine a message had to get to people from different communities. Who would be the best user to deliver the message to ensure that people from opposite communities receive the message?
 
 // answer here //
+
+
+```python
+# Your answer here
+```
 
 #### 3) A marketing group is looking to target different communities with advertisements based off of their assumed mutual interests. 
 
@@ -331,6 +339,11 @@ $$ \sigma(z) = \frac{1}{1+e^{-z}}$$
 ##### 1) What are the inputs and outputs of a perceptron?
 
 // answer here //
+
+
+```python
+# Your answer here
+```
 
 ##### 2) We've completed the sigmoid function for you. Let's create a function that takes in an array of inputs (x) along with predefined weights (w), a bias (b) and returns the output of a perceptron. 
 
@@ -395,15 +408,24 @@ perceptron_output(x,w,b)
 
 ##### 3) Describe the process of forward propagation in neural networks
 
-// answer here //
+
+```python
+# Your answer here
+```
 
 ##### 4) How does what happens in forward-propagation change what happens in back-propagation? Be as specific as possible.
 
-// answer here //
+
+```python
+# Your answer here
+```
 
 ##### 5) Imagine you are trying classifying audio files into five different classes of sounds. What should your activation function be in the output layer and why? 
 
-// answer here //
+
+```python
+# Your answer here
+```
 
 ## Regularization and Optimization of Neural Networks
 
@@ -543,13 +565,22 @@ print(accuracy_score(y_test,predicted_vals_test))
 
 Did the regularization you performed prevent overfitting?
 
-// answer here //
+
+```python
+# Your answer here
+```
 
 ##### 2) Explain how regularization is related to the bias/variance tradeoff within Neural Networks and how it's related to the results you just achieved in the training and test accuracies of the previous models. What does regularization change in the training process (be specific to what is being regularized and how it is regularizing)?
 
 
-// answer here // 
+
+```python
+# Your answer here
+```
 
 ##### 3) How might L1  and dropout regularization change a neural network's architecture?
 
-// answer here //
+
+```python
+# Your answer here
+```
